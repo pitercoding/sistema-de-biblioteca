@@ -26,6 +26,7 @@ public class ConsoleUI {
             System.out.println("3. Listar Livros Disponíveis");
             System.out.println("4. Emprestar Livro");
             System.out.println("5. Devolver Livro");
+            System.out.println("6. Deletar Livro");
             System.out.println("0. Sair");
             System.out.print("Escolha uma opção: ");
 
@@ -39,6 +40,7 @@ public class ConsoleUI {
                     case 3 -> listarLivrosDisponiveis();
                     case 4 -> emprestarLivro();
                     case 5 -> devolverLivro();
+                    case 6 -> deletarLivro();
                     case 0 -> {
                         executando = false;
                         System.out.println("Encerrando sistema...");
@@ -64,6 +66,7 @@ public class ConsoleUI {
 
         Livro livro = new Livro(titulo, autor, ano);
         biblioteca.cadastrarLivro(livro);
+        System.out.println("Livro cadastrado com sucesso!");
     }
 
     private void cadastrarUsuario() {
@@ -74,6 +77,7 @@ public class ConsoleUI {
 
         Usuario usuario = new Usuario(nome, matricula);
         biblioteca.cadastrarUsuario(usuario);
+        System.out.println("Usuário cadastrado com sucesso!");
     }
 
     private void listarLivrosDisponiveis() {
@@ -99,6 +103,7 @@ public class ConsoleUI {
                 .orElseThrow(() -> new IllegalArgumentException("Livro não encontrado."));
 
         biblioteca.emprestarLivro(matricula, livro);
+        System.out.println("Livro emprestado com sucesso!");
     }
 
     private void devolverLivro() {
@@ -108,16 +113,19 @@ public class ConsoleUI {
         System.out.print("Título do livro: ");
         String tituloLivro = scanner.nextLine();
 
-        // Aqui idealmente buscaríamos o livro na lista do usuário
         Livro livro = biblioteca.listarLivrosDisponiveis().stream()
                 .filter(l -> l.getTitulo().equalsIgnoreCase(tituloLivro))
                 .findFirst()
-                .orElse(null);
+                .orElseThrow(() -> new IllegalArgumentException("Livro não encontrado ou já disponível."));
 
-        if (livro == null) {
-            System.out.println("Livro já está disponível ou título incorreto.");
-        } else {
-            biblioteca.devolverLivro(matricula, livro);
-        }
+        biblioteca.devolverLivro(matricula, livro);
+        System.out.println("Livro devolvido com sucesso!");
+    }
+
+    private void deletarLivro() {
+        System.out.print("Título do livro a deletar: ");
+        String titulo = scanner.nextLine();
+        biblioteca.removerLivro(titulo);
+        System.out.println("Livro deletado com sucesso!");
     }
 }
