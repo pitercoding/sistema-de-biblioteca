@@ -21,18 +21,29 @@ public class Usuario {
     public String getNome() { return nome; }
     public String getMatricula() { return matricula; }
 
-    public List<Livro> getLivrosEmprestados() { return new ArrayList<>(livrosEmprestados); }
+    public List<Livro> getLivrosEmprestados() {
+        // Retorna uma cópia para evitar alterações externas
+        return new ArrayList<>(livrosEmprestados);
+    }
 
-    public boolean podeEmprestar() { return livrosEmprestados.size() < 3; }
+    public boolean podeEmprestar() {
+        return livrosEmprestados.size() < 3;
+    }
 
     public void adicionarLivro(Livro livro) {
-        if (podeEmprestar()) livrosEmprestados.add(livro);
-        else throw new IllegalStateException("Usuário já atingiu o limite de 3 livros.");
+        if (podeEmprestar()) {
+            livrosEmprestados.add(livro);
+        } else {
+            throw new IllegalStateException("Usuário já atingiu o limite de 3 livros.");
+        }
     }
 
     public void devolverLivro(Livro livro) {
-        if (livrosEmprestados.contains(livro)) livrosEmprestados.remove(livro);
-        else throw new IllegalArgumentException("Este usuário não possui o livro informado.");
+        if (livrosEmprestados.contains(livro)) {
+            livrosEmprestados.remove(livro);
+        } else {
+            throw new IllegalArgumentException("Este usuário não possui o livro informado.");
+        }
     }
 
     @Override

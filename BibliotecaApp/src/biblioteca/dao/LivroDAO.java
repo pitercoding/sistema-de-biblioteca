@@ -9,7 +9,6 @@ import static biblioteca.dao.ConnectionFactory.getConnection;
 
 public class LivroDAO {
 
-    // Inserir novo livro
     public void salvar(Livro livro) {
         String sql = "INSERT INTO livros (titulo, autor, ano_publicacao, disponivel) VALUES (?, ?, ?, ?)";
         try (Connection conn = getConnection();
@@ -26,7 +25,6 @@ public class LivroDAO {
                     livro.setId(rs.getInt(1));
                 }
             }
-
         } catch (SQLException e) {
             throw new RuntimeException("Erro ao salvar livro", e);
         }
@@ -83,4 +81,3 @@ public class LivroDAO {
         }
     }
 }
-
