@@ -21,7 +21,6 @@ public class UsuarioDAO {
                     usuario.setId(rs.getInt(1));
                 }
             }
-
         } catch (SQLException e) {
             throw new RuntimeException("Erro ao salvar usuário", e);
         }
@@ -43,7 +42,6 @@ public class UsuarioDAO {
                 usuario.setId(rs.getInt("id"));
                 usuarios.add(usuario);
             }
-
         } catch (SQLException e) {
             throw new RuntimeException("Erro ao listar usuários", e);
         }
