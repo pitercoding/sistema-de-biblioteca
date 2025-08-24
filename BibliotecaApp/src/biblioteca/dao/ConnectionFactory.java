@@ -12,13 +12,10 @@ public class ConnectionFactory {
 
     public static Connection getConnection() throws SQLException {
         try {
-            // Força o carregamento do driver JDBC
-            Class.forName("com.mysql.cj.jdbc.Driver");
+            Class.forName("com.mysql.cj.jdbc.Driver"); // força o carregamento do driver JDBC
         } catch (ClassNotFoundException e) {
             throw new RuntimeException("Driver JDBC não encontrado!", e);
         }
-
-        // Retorna a conexão com o banco de dados
         return DriverManager.getConnection(URL, USER, PASSWORD);
     }
 }

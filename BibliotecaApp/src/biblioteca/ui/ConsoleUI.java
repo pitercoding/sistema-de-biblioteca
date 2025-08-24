@@ -27,6 +27,7 @@ public class ConsoleUI {
             System.out.println("4. Emprestar Livro");
             System.out.println("5. Devolver Livro");
             System.out.println("6. Deletar Livro");
+            System.out.println("7. Listar Livros Emprestados de um Usuário");
             System.out.println("0. Sair");
             System.out.print("Escolha uma opção: ");
 
@@ -41,6 +42,7 @@ public class ConsoleUI {
                     case 4 -> emprestarLivro();
                     case 5 -> devolverLivro();
                     case 6 -> deletarLivro();
+                    case 7 -> listarEmprestimosPorUsuario();
                     case 0 -> {
                         executando = false;
                         System.out.println("Encerrando sistema...");
@@ -103,7 +105,6 @@ public class ConsoleUI {
                 .orElseThrow(() -> new IllegalArgumentException("Livro não encontrado."));
 
         biblioteca.emprestarLivro(matricula, livro);
-        System.out.println("Livro emprestado com sucesso!");
     }
 
     private void devolverLivro() {
@@ -113,13 +114,16 @@ public class ConsoleUI {
         System.out.print("Título do livro: ");
         String tituloLivro = scanner.nextLine();
 
-        Livro livro = biblioteca.listarLivrosDisponiveis().stream()
+        // Busca o livro pelo título entre os livros realmente emprestados ao usuário
+        List<Livro> livrosEmprestados = biblioteca.listarLivrosEmprestadosPorUsuario(matricula);
+        Livro livroParaDevolver = livrosEmprestados.stream()
                 .filter(l -> l.getTitulo().equalsIgnoreCase(tituloLivro))
                 .findFirst()
-                .orElseThrow(() -> new IllegalArgumentException("Livro não encontrado ou já disponível."));
+                .orElseThrow(() -> new IllegalArgumentException(
+                        "Erro: Este usuário não possui o livro informado."
+                ));
 
-        biblioteca.devolverLivro(matricula, livro);
-        System.out.println("Livro devolvido com sucesso!");
+        biblioteca.devolverLivro(matricula, livroParaDevolver);
     }
 
     private void deletarLivro() {
@@ -128,4 +132,18 @@ public class ConsoleUI {
         biblioteca.removerLivro(titulo);
         System.out.println("Livro deletado com sucesso!");
     }
+
+    private void listarEmprestimosPorUsuario() {
+        System.out.print("Matrícula do usuário: ");
+        String matricula = scanner.nextLine();
+
+        List<Livro> emprestados = biblioteca.listarLivrosEmprestadosPorUsuario(matricula);
+        if (emprestados.isEmpty()) {
+            System.out.println("Esse usuário não possui livros emprestados.");
+        } else {
+            System.out.println("Livros emprestados:");
+            emprestados.forEach(System.out::println);
+        }
+    }
 }
+
