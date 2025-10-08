@@ -48,11 +48,16 @@ public class Usuario {
 
     @Override
     public String toString() {
-        return "Usuario{" +
-                "id=" + id +
-                ", Nome='" + nome + '\'' +
-                ", Matrícula='" + matricula + '\'' +
-                ", Livros emprestados=" + livrosEmprestados.size() +
-                '}';
+        return String.format(
+                "Usuário:\n" +
+                        "  ID: %d\n" +
+                        "  Nome: %s\n" +
+                        "  Matrícula: %s\n" +
+                        "  Livros emprestados: %d\n",
+                id,
+                nome,
+                matricula,
+                livrosEmprestados.size()
+        );
     }
 }

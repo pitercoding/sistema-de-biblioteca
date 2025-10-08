@@ -41,6 +41,20 @@ public class BibliotecaService {
         usuarioDAO.salvar(usuario);
     }
 
+    public List<Usuario> listarUsuarios() {
+        List<Usuario> usuarios = usuarioDAO.listarTodos();
+
+        for (Usuario usuario : usuarios) {
+            // Busca livros emprestados no banco e adiciona ao objeto
+            var livrosEmprestados = emprestimoDAO.listarEmprestimosAtivosPorUsuario(usuario.getId());
+            for (var livro : livrosEmprestados) {
+                usuario.adicionarLivro(livro);
+            }
+        }
+        return usuarios;
+    }
+
+
     // === Empréstimos ===
     public void emprestarLivro(String matricula, Livro livro) {
         Usuario usuario = usuarioDAO.listarTodos().stream()

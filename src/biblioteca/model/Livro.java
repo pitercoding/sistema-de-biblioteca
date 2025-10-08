@@ -44,12 +44,18 @@ public class Livro {
 
     @Override
     public String toString() {
-        return "Livro{" +
-                "id=" + id +
-                ", Título='" + titulo + '\'' +
-                ", Autor='" + autor + '\'' +
-                ", Ano=" + anoPublicacao +
-                ", Disponível=" + (disponivel ? "Sim" : "Não") +
-                '}';
+        return String.format(
+                "Livro:\n" +
+                        "  ID: %d\n" +
+                        "  Título: %s\n" +
+                        "  Autor: %s\n" +
+                        "  Ano de Publicação: %d\n" +
+                        "  Disponível: %s\n",
+                id,
+                titulo,
+                autor,
+                anoPublicacao,
+                disponivel ? "Sim" : "Não"
+        );
     }
 }

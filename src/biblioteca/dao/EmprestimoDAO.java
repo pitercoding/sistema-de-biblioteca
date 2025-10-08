@@ -17,7 +17,7 @@ public class EmprestimoDAO {
             stmt.setInt(2, livroId);
             stmt.executeUpdate();
 
-            System.out.println("📌 Empréstimo registrado com sucesso!");
+            System.out.println("✅ Empréstimo registrado com sucesso!");
         } catch (SQLException e) {
             System.out.println("❌ Erro ao registrar empréstimo: " + e.getMessage());
         }
@@ -35,7 +35,7 @@ public class EmprestimoDAO {
 
             int rowsUpdated = stmt.executeUpdate();
             if (rowsUpdated > 0) {
-                System.out.println("📌 Devolução registrada com sucesso!");
+                System.out.println("✅ Devolução registrada com sucesso!");
             } else {
                 System.out.println("⚠️ Nenhum empréstimo ativo encontrado para esse livro/usuário.");
             }
