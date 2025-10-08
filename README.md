@@ -25,7 +25,7 @@ O sistema roda via **console (Scanner)** e permite cadastrar livros e usuários,
 
 ## 🏗️ Estrutura do Projeto
 ```swift
-BibliotecaApp/
+sistema-de-biblioteca/
 ├── src/biblioteca/
 │ ├── dao/
 │ │ ├── ConnectionFactory.java
