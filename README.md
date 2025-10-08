@@ -1,6 +1,7 @@
 # 📚 Sistema de Biblioteca (Java + MySQL)
 
-Este é um projeto de aprendizado em Java que implementa um sistema de **biblioteca com persistência em banco de dados MySQL**.  
+Este é um projeto de aprendizado em Java que implementa um sistema de **biblioteca com persistência em banco de dados MySQL**.
+
 Ele foi desenvolvido para praticar os conceitos de **Programação Orientada a Objetos (POO)**, separação de responsabilidades e integração com JDBC.
 
 O sistema roda via **console (Scanner)** e permite cadastrar livros e usuários, realizar empréstimos e devoluções, além de consultar livros disponíveis e emprestados.
@@ -8,25 +9,45 @@ O sistema roda via **console (Scanner)** e permite cadastrar livros e usuários,
 ## 🚀 Objetivos do Projeto
 
 - Aplicar conceitos de **POO** (encapsulamento, classes de domínio, serviços e interface).
+  
 - Treinar **separação de responsabilidades** em pacotes:
   - `model` → classes de domínio (`Livro`, `Usuario`).
   - `dao` → camada de persistência com JDBC (`ConnectionFactory`, `LivroDAO`, `UsuarioDAO`, `EmprestimoDAO`).
   - `service` → regras de negócio (`BibliotecaService`).
   - `ui` → interface via console (`App´`, `ConsoleUI`).
+    
 - Implementar **regras de negócio reais**, como:
   - ➡️ Limite de 3 livros emprestados por usuário.
   - ➡️ Controle de disponibilidade de livros.
   - ➡️ Validação ao devolver apenas livros realmente emprestados.
+    
 - Criar um **CRUD completo** para livros e usuários.
 
 ## 🏗️ Estrutura do Projeto
-```markdown
-biblioteca/
-├── dao/ # Camada de acesso ao banco de dados (ConnectionFactory, EmprestimoDAO, LivroDAO, UsuarioDAO)
-├── model/ # Classes de domínio (Livro, Usuario)
-├── service/ # Regras de negócio (BibliotecaService)
-└── ui/ # Interface de console (App, ConsoleUI)
+```swift
+BibliotecaApp/
+├── src/biblioteca/
+│ ├── dao/
+│ │ ├── ConnectionFactory.java
+│ │ ├── EmprestimoDAO.java
+│ │ ├── LivroDAO.java
+│ │ └── UsuarioDAO.java
+│ │
+│ ├── model/
+│ │ ├── Livro.java
+│ │ └── Usuario.java
+│ │
+│ ├──── service/
+│ │ └── BibliotecaService.java
+│ │
+│ ├──── ui/
+│ │ ├── App.java
+│ │ └── ConsoleUI.java
+│ │
+├── .gitignore
+├── README.md
 ```
+
 ## 🖥️ Funcionalidades Implementadas
 
 - **Cadastro de Livros**
@@ -102,6 +123,7 @@ Livro devolvido com sucesso!
 ## ⚙️ Ajustes Recentes
 
 - Refatoração do **`BibliotecaService`**:
+  
   - Toda validação de empréstimo e devolução agora é feita **diretamente no banco**, evitando inconsistências com listas em memória.
   - Correção da regra de devolução (antes não encontrava o livro emprestado corretamente).
   - Implementação robusta do limite de **3 livros por usuário**.
@@ -113,6 +135,7 @@ Livro devolvido com sucesso!
 ## 🛠️ Banco de Dados (MySQL)
 
 O sistema utiliza **MySQL** como banco de dados.  
+
 Aqui está o script SQL para criar as tabelas necessárias:
 
 ```sql
@@ -167,18 +190,16 @@ private static final String PASSWORD = "sua_senha";
 ## 🤝 Contribuições
 
 Este projeto está aberto para contribuições!  
+
 Se você também está aprendendo Java ou quer ajudar com ideias e melhorias, sinta-se à vontade para abrir um Pull Request ou Issue.
 
 ## 👨‍💻 Autor
 
 Projeto desenvolvido por um estudante de Java com fins educacionais e de aprendizado pessoal.  
+
 Se quiser trocar ideia ou colaborar, é só chamar!
 
 ## 📄 Licença
 
 Este projeto está sob a licença MIT. Sinta-se livre para usar, modificar e compartilhar.
-
-## 🏷️ Palavras-chave
-
-<b>biblioteca, sistema-biblioteca, java, pojo, dao, jdbc, mysql, crud, consoleui, emprestimo-livros, persistencia-dados
 
