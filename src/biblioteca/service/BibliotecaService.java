@@ -86,6 +86,3 @@ public class BibliotecaService {
         return emprestimoDAO.listarEmprestimosAtivosPorUsuario(usuario.getId());
     }
 }
-
-
-

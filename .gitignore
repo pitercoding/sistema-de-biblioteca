@@ -28,17 +28,3 @@ Thumbs.db
 *.bak
 *.swp
 *~
-
-# === Maven / Gradle ===
-.mvn/
-.gradle/
-!gradle/wrapper/gradle-wrapper.jar
-gradle-app.setting
-*.war
-*.ear
-
-# === Database configs ===
-/biblioteca/dao/ConnectionFactory.java
-
-# === Environment files ===
-.env

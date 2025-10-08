@@ -45,12 +45,12 @@ public class ConsoleUI {
                     case 7 -> listarEmprestimosPorUsuario();
                     case 0 -> {
                         executando = false;
-                        System.out.println("Encerrando sistema...");
+                        System.out.println("\nEncerrando sistema...");
                     }
-                    default -> System.out.println("Opção inválida! Tente novamente.");
+                    default -> System.out.println("\nOpção inválida! Tente novamente.");
                 }
             } catch (Exception e) {
-                System.out.println("Erro: " + e.getMessage());
+                System.out.println("\nErro: " + e.getMessage());
             }
         }
 
@@ -58,7 +58,7 @@ public class ConsoleUI {
     }
 
     private void cadastrarLivro() {
-        System.out.print("Título: ");
+        System.out.print("\nTítulo: ");
         String titulo = scanner.nextLine();
         System.out.print("Autor: ");
         String autor = scanner.nextLine();
@@ -68,11 +68,11 @@ public class ConsoleUI {
 
         Livro livro = new Livro(titulo, autor, ano);
         biblioteca.cadastrarLivro(livro);
-        System.out.println("Livro cadastrado com sucesso!");
+        System.out.println("\nLivro cadastrado com sucesso!");
     }
 
     private void cadastrarUsuario() {
-        System.out.print("Nome: ");
+        System.out.print("\nNome: ");
         String nome = scanner.nextLine();
         System.out.print("Matrícula: ");
         String matricula = scanner.nextLine();
@@ -85,15 +85,15 @@ public class ConsoleUI {
     private void listarLivrosDisponiveis() {
         List<Livro> disponiveis = biblioteca.listarLivrosDisponiveis();
         if (disponiveis.isEmpty()) {
-            System.out.println("Nenhum livro disponível.");
+            System.out.println("\nNenhum livro disponível.");
         } else {
-            System.out.println("Livros disponíveis:");
+            System.out.println("\nLivros disponíveis:");
             disponiveis.forEach(System.out::println);
         }
     }
 
     private void emprestarLivro() {
-        System.out.print("Matrícula do usuário: ");
+        System.out.print("\nMatrícula do usuário: ");
         String matricula = scanner.nextLine();
 
         System.out.print("Título do livro: ");
@@ -108,7 +108,7 @@ public class ConsoleUI {
     }
 
     private void devolverLivro() {
-        System.out.print("Matrícula do usuário: ");
+        System.out.print("\nMatrícula do usuário: ");
         String matricula = scanner.nextLine();
 
         System.out.print("Título do livro: ");
@@ -127,14 +127,14 @@ public class ConsoleUI {
     }
 
     private void deletarLivro() {
-        System.out.print("Título do livro a deletar: ");
+        System.out.print("\nTítulo do livro a deletar: ");
         String titulo = scanner.nextLine();
         biblioteca.removerLivro(titulo);
         System.out.println("Livro deletado com sucesso!");
     }
 
     private void listarEmprestimosPorUsuario() {
-        System.out.print("Matrícula do usuário: ");
+        System.out.print("\nMatrícula do usuário: ");
         String matricula = scanner.nextLine();
 
         List<Livro> emprestados = biblioteca.listarLivrosEmprestadosPorUsuario(matricula);
@@ -146,4 +146,3 @@ public class ConsoleUI {
         }
     }
 }
-
