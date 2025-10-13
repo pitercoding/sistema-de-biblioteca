@@ -28,3 +28,6 @@ Thumbs.db
 *.bak
 *.swp
 *~
+
+# Arquivo real de conexão (não versionar)
+**/connection.properties
